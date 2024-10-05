@@ -26,11 +26,15 @@ def tic_tac_toe(game_b):
         print(f"\n{game_b}")
         if win_condition(player_1=player1, player_2=player2, game=game_b):
             on = False
+        elif draw_condition(game=game_b):
+            on = False
         else:
             choice_2 = input("\nPlayer 2, your move (1-9): ")
             game_b = game_b.replace(choice_2, player2)
             print(f"\n{game_b}")
             if win_condition(player_1=player1, player_2=player2, game=game_b):
+                on = False
+            elif draw_condition(game=game_b):
                 on = False
 
 
@@ -85,6 +89,17 @@ def win_condition(player_1, player_2, game):
     elif lines[0][14] == lines[2][14] == lines[4][14] == player_2:
         print("\nGame Over!\nPlayer 2 Wins!")
         return game_over
+
+
+def draw_condition(game):
+    game_over = True
+    if '1' in game or '2' in game or '3' in game or '4' in game or '5' in game \
+            or '6' in game or '7' in game or '8' in game or '9' in game:
+        pass
+    else:
+        print("\nGame Over!\nThat's a Draw!")
+        return game_over
+    return
 
 
 game_on = True
